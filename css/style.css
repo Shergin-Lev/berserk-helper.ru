@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -10,25 +14,49 @@ body {
 }
 
 .player {
+    animation: opacity_off_scale 0.7s ease forwards;
+    scale: 80%;
+    opacity: 0;
+    transition: max-width 0.3s;
+    min-width: 30%; 
+    max-width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    flex-shrink: 0;
     padding: 10px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.19);
 }
 
 .player div {
-    width: 120px;
-    height: 120px;
+    min-width: 20%;
+    min-height: 20%;
+    max-width: 80%;
     background-size: contain;
 }
 
-.first {
+@keyframes opacity_off_scale {
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@media (min-width: 900px) {
+    .player {
+        max-width: 30%;
+    }
+}
+
+.player img {
+    width: 100%;
+}
+
+/* .first {
     background: url('../image/first.png'), no-repeat;
 }
 
 .second {
     background: url('../image/second.png'), no-repeat;
+} */
