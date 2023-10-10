@@ -36,6 +36,44 @@ body {
     background-size: contain;
 }
 
+.crystal_container {
+    min-width: 30%; 
+    max-width: 90%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.crystal_container div {
+
+    min-width: 10%;
+    min-height: 10%;
+    max-width: 80%;
+    background-size: contain;
+}
+
+.crystal_button img {
+    width: 100%;
+}
+
+.crystal_button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crystal_value {
+    position: absolute;
+    font-family: 'Lalezar';
+    font-size: 2em;
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 2px rgb(85, 85, 85);
+    -webkit-text-stroke: 0.8px rgb(255, 255, 255);
+}
+
 @keyframes opacity_off_scale {
     100% {
         opacity: 1;
@@ -49,14 +87,18 @@ body {
     }
 }
 
+@media (min-width: 900px) {
+    .crystal_container {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+@media (orientation: landscape) {
+    .crystal_container {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
 .player img {
     width: 100%;
 }
-
-/* .first {
-    background: url('../image/first.png'), no-repeat;
-}
-
-.second {
-    background: url('../image/second.png'), no-repeat;
-} */

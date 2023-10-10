@@ -1,3 +1,11 @@
+import {get_crystal_containers, get_player_container} from './prefabs.js';
+
+
+const main_view = document.querySelector('body');
+main_view.append(get_crystal_containers()[0]);
+main_view.append(get_crystal_containers()[1]);
+// main_view.append(get_player_container());
+
 var gold = 25
 var silver = 23
 
@@ -8,30 +16,30 @@ const silver_crystall = document.getElementById('silver_crystall');
 
 change_counter();
 
-function handleButtonClick(buttonId) {
-    
-    if(buttonId === 'button1') set_counter(1, 1);
+export function handleButtonClick(buttonId) {
 
-    const center_content = document.getElementById('center-content');
-    const bottom_content = document.getElementById('bottom-content');
-    const buttons = document.querySelector('.buttons');
+    // if(buttonId === 'button1') set_counter(1, 1);
 
-    buttons.classList.add('animate-out');
+    // const center_content = document.getElementById('center-content');
+    // const bottom_content = document.getElementById('bottom-content');
+    // const buttons = document.querySelector('.buttons');
 
-    setTimeout(() => {
-        buttons.style.display = 'none';
-        center_content.style.display = 'block';
-        bottom_content.style.display = 'block';
+    // buttons.classList.add('animate-out');
 
-        center_content.classList.add('animate-in');
-        bottom_content.classList.add('animate-in');
+    // setTimeout(() => {
+    //     buttons.style.display = 'none';
+    //     center_content.style.display = 'block';
+    //     bottom_content.style.display = 'block';
+
+    //     center_content.classList.add('animate-in');
+    //     bottom_content.classList.add('animate-in');
         
-        setTimeout(() => {
-            center_content.classList.add('show');
-            bottom_content.classList.add('show');
-        }, 100);
-        buttons.remove();
-    }, 300);
+    //     setTimeout(() => {
+    //         center_content.classList.add('show');
+    //         bottom_content.classList.add('show');
+    //     }, 100);
+    //     buttons.remove();
+    // }, 300);
 }
 
 function handleCrystallElementClick(button_type, value=0) {
