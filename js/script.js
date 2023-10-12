@@ -1,45 +1,45 @@
-import {get_crystal_containers, get_player_container} from './prefabs.js';
+import {
+    get_crystal_containers,
+    get_player_container,
+    get_element_containers,
+    get_newcards_players
+} from './prefabs.js';
 
 
-const main_view = document.querySelector('body');
-main_view.append(get_crystal_containers()[0]);
-main_view.append(get_crystal_containers()[1]);
-// main_view.append(get_player_container());
+const first_container = document.querySelector('.first');
+const second_container = document.querySelector('.second');
+const third_container = document.querySelector('.third');
+// main_view.append(get_crystal_containers()[0]);
+// main_view.append(get_crystal_containers()[1]);
+second_container.append(get_player_container());
 
 var gold = 25
 var silver = 23
 
-const container = document.querySelector('.container');
 
 const gold_crystall = document.getElementById('gold_crystall');
 const silver_crystall = document.getElementById('silver_crystall');
 
-change_counter();
+// change_counter();
 
-export function handleButtonClick(buttonId) {
+export function playerSelectClick(buttonId) {
 
     // if(buttonId === 'button1') set_counter(1, 1);
+    const buttons = document.querySelector('.player');
 
-    // const center_content = document.getElementById('center-content');
-    // const bottom_content = document.getElementById('bottom-content');
-    // const buttons = document.querySelector('.buttons');
+    buttons.style.opacity = 1;
+    buttons.style.scale = '100%';
+    buttons.style.animationName = "opacity_on_scale";
 
-    // buttons.classList.add('animate-out');
+    setTimeout(() => {
+        buttons.remove();
+        first_container.append(get_crystal_containers()[0]);
+        first_container.append(get_crystal_containers()[1]);
+        first_container.append(get_element_containers());
+        first_container.append(get_newcards_players());
+    }, 800);
 
-    // setTimeout(() => {
-    //     buttons.style.display = 'none';
-    //     center_content.style.display = 'block';
-    //     bottom_content.style.display = 'block';
-
-    //     center_content.classList.add('animate-in');
-    //     bottom_content.classList.add('animate-in');
-        
-    //     setTimeout(() => {
-    //         center_content.classList.add('show');
-    //         bottom_content.classList.add('show');
-    //     }, 100);
-    //     buttons.remove();
-    // }, 300);
+    
 }
 
 function handleCrystallElementClick(button_type, value=0) {
@@ -90,13 +90,13 @@ function addCrystalBottom(button_type, value=0, add_val=0) {
     }
 }
 
-function set_counter(_gold=0, _silver=0) {
-    gold -= _gold;
-    silver -= _silver;
-    change_counter();
-}
+// function set_counter(_gold=0, _silver=0) {
+//     gold -= _gold;
+//     silver -= _silver;
+//     change_counter();
+// }
 
-function change_counter() {
-    gold_crystall.textContent = gold;
-    silver_crystall.textContent = silver;
-}
+// function change_counter() {
+//     gold_crystall.textContent = gold;
+//     silver_crystall.textContent = silver;
+// }

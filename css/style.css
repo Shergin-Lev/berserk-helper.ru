@@ -3,18 +3,45 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;    
+}
+
+.main_container {
     height: 100vh;
     background: linear-gradient(180deg, #555 0.15%, #202020 100%);
-    display: flex;
+    display: grid;
+    grid-template-rows: 50% 20% 30%;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.first {
+    /* margin: 10px; */
+    display: grid;
+    /* justify-content: center; */
+    justify-items: center;
+    align-items: center;
+}
+
+.second {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.third {
+    display: flex;
+}
+
+.gold_crystal {
+    width: 100%;
+}
+
 .player {
-    animation: opacity_off_scale 0.7s ease forwards;
+    animation: opacity_off_scale 0.7s ease-in-out forwards;
     scale: 80%;
     opacity: 0;
     transition: max-width 0.3s;
@@ -26,7 +53,7 @@ body {
     gap: 15px;
     padding: 10px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.19);
+    background: rgba(0, 0, 0, 0.20);
 }
 
 .player div {
@@ -36,14 +63,17 @@ body {
     background-size: contain;
 }
 
-.crystal_container {
+.crystal_container,
+.element_container,
+.newcards_players_container {
     min-width: 30%; 
     max-width: 90%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
-    gap: 2px;
+    gap: 5px;
+    margin-bottom: 5px;
 }
 
 .crystal_container div {
@@ -54,15 +84,30 @@ body {
     background-size: contain;
 }
 
-.crystal_button img {
+.mini_button img {
+    max-height: 100px;
     width: 100%;
 }
 
-.crystal_button {
+.mini_button {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.element_container .mini_button img{
+    width: 70%;
+    max-height: 100px;
+}
+
+.newcards_players_container .mini_button img {
+    max-height: 100px;
+    width: 40%;
+}
+
+.newcards_players_container {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .crystal_value {
@@ -78,6 +123,13 @@ body {
     100% {
         opacity: 1;
         scale: 1;
+    }
+}
+
+@keyframes opacity_on_scale {
+    100% {
+        opacity: 0;
+        scale: 0.8;
     }
 }
 
