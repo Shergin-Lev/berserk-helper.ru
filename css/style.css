@@ -40,7 +40,7 @@ body {
     width: 100%;
 }
 
-.player {
+.player, .counters_container {
     animation: opacity_off_scale 0.7s ease-in-out forwards;
     scale: 80%;
     opacity: 0;
@@ -56,11 +56,17 @@ body {
     background: rgba(0, 0, 0, 0.20);
 }
 
-.player div {
+.player div,
+.counters_container div {
     min-width: 20%;
     min-height: 20%;
     max-width: 80%;
     background-size: contain;
+}
+
+.player img,
+.counters_container img {
+    width: 100%;
 }
 
 .crystal_container,
@@ -89,7 +95,7 @@ body {
     width: 100%;
 }
 
-.mini_button {
+.mini_button, .counter {
     position: relative;
     display: flex;
     justify-content: center;
@@ -117,6 +123,10 @@ body {
     color: rgb(0, 0, 0);
     text-shadow: 1px 1px 2px rgb(85, 85, 85);
     -webkit-text-stroke: 0.8px rgb(255, 255, 255);
+}
+
+.counter .crystal_value {
+    font-size: 3em;
 }
 
 @keyframes opacity_off_scale {
@@ -151,6 +161,4 @@ body {
     }
 }
 
-.player img {
-    width: 100%;
-}
+

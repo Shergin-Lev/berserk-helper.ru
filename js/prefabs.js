@@ -1,4 +1,8 @@
-import {playerSelectClick} from './script.js';
+import {
+    playerSelectClick,
+    handleCrystallElementClick,
+    handleBottomButtons
+} from './script.js';
 
 function get_minibutton(crystal_type) {
     let cr = document.createElement('div');    
@@ -12,10 +16,13 @@ function get_minibutton(crystal_type) {
     return cr;
 }
 
-function get_crystal_span(value) {
+function get_crystal_span(value, id='') {
     let span = document.createElement('span');
     span.className = 'crystal_value';
     span.textContent = value;
+    if (id) {
+        span.id = id;
+    }
     
     return span;
 }
@@ -74,7 +81,7 @@ export function get_crystal_containers() {
         g_cr.className = 'mini_button';
         g_cr.id = 'gold_' + crystal_number;
         g_cr.addEventListener('click', function() {
-            handleButtonClick('gold_' + crystal_number);
+            handleCrystallElementClick('gold', crystal_number);
         })
         g_cr.append(get_crystal_span(crystal_number));
         gold_crystal_container.append(g_cr);        
@@ -83,7 +90,7 @@ export function get_crystal_containers() {
         s_cr.className = 'mini_button';
         s_cr.id = 'silver_' + crystal_number;
         s_cr.addEventListener('click', function() {
-            handleButtonClick('silver_' + crystal_number);
+            handleCrystallElementClick('silver', crystal_number);
         })
         s_cr.append(get_crystal_span(crystal_number));
         silver_crystall_container.append(s_cr);
@@ -109,7 +116,7 @@ export function get_element_containers() {
         element.className ='mini_button';
         element.id = elements_name[i] + '_button';
         element.addEventListener('click', function() {
-            handleButtonClick(elements_name[i]);
+            handleCrystallElementClick(elements_name[i]);
         })
         element_container.append(element);
     }
@@ -145,4 +152,36 @@ export function get_newcards_players() {
     newcards_players_container.append(player2);
 
     return newcards_players_container;
+}
+
+export function get_crystal_counters() {
+    const counters_container = document.createElement('div');
+    counters_container.className = 'counters_container';
+
+    const gold_counter = get_minibutton('gold');    
+    const silver_counter = get_minibutton('silver');
+    gold_counter.className = 'counter';
+    gold_counter.append(get_crystal_span(22, 'gold_crystal'));
+    silver_counter.className = 'counter';
+    silver_counter.append(get_crystal_span(23, 'silver_crystal'));
+
+    counters_container.append(gold_counter);
+    counters_container.append(silver_counter);
+
+    return counters_container;
+}
+
+export function get_bottom_crystal_container() {
+    const crystal_container = document.createElement('div');
+    crystal_container.className = 'bottom_crystal_container';
+
+    return crystal_container;
+}
+
+export function get_bottom_button(button_type, value=0) {
+    const bottom_button = document.createElement('div');
+    bottom_button.className = 'bottom_button';
+    bottom_button.addEventListener('click',  function() {
+        handleBottomButtons(button_type, value);
+    })
 }
