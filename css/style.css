@@ -129,6 +129,14 @@ body {
     font-size: 3em;
 }
 
+.grayscale_on {
+    filter: grayscale(1);
+}
+
+.invert {
+    filter: invert(1);
+}
+
 @keyframes opacity_off_scale {
     100% {
         opacity: 1;

@@ -40,37 +40,37 @@ export function playerSelectClick(buttonId) {
         second_container.append(get_crystal_counters());
 
         count_object_init();
-        if(buttonId === 'first_player') set_counter(1, 0);
+        const player_button = document.getElementById(buttonId).querySelector('img');
+        player_button.classList.add('invert');
+        if(buttonId === 'first_player') {
+            set_counter(1, 0);
+        }
 
         third_container.append(get_bottom_crystal_container())
     }, 800);
-
-    
 }
 
-// export function {}
-
-
-
-export function handleCrystallElementClick(button_type, value=0) {
+export function handleCrystallElementClick(button_type, value=0) {    
     if(button_type === 'gold') {
         if(gold >= value) {
-            gold -= value;
+            set_counter(value)
+            console.log(value);
             addCrystalBottom(button_type, value);
         }
     }
     else if(button_type === 'silver') {
         if(silver >= value) {
-            silver -= value;
+            set_counter(0, value);
             addCrystalBottom(button_type, value);
         }
         else {
             var gold_cost = value - silver;
             var add_val = silver;
             if(gold >= gold_cost) {
-                silver = 0;
-                gold -= gold_cost;
-                addCrystalBottom('gold-silver', gold_cost, add_val);
+                // silver = 0;
+                // gold -= gold_cost;
+                set_counter(gold_cost, add_val);
+                addCrystalBottom('silver-gold', gold_cost, add_val);
             }
         }
     }
@@ -83,25 +83,15 @@ export function handleCrystallElementClick(button_type, value=0) {
     }
 }
 
-export function handleBottomButtons() {
+export function handleBottomButtons(button_type, value, add_val) {
     // TODO: DO IT!
     pass;
 }
 
 function addCrystalBottom(button_type, value=0, add_val=0) {
-    const bottom_buttons = document.querySelectorAll('.bottom_crystal_container');
-    for(var bt of bottom_buttons) {
-        if(bt.classList.length == 1) {
-            bt.classList.add(button_type);
-            text = value;
-            if(button_type === 'gold-silver') {
-                text = text + ' ' + add_val;
-            }
-            bt.textContent = text;
-            change_counter();
-            break;
-        }
-    }
+    const bottom_buttons_container = document.querySelector('.bottom_crystal_container');
+    const bt = get_bottom_button(button_type, value, add_val);  
+    bottom_buttons_container.append(bt);
 }
 
 function count_object_init() {
