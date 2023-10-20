@@ -1,7 +1,8 @@
 import {
     playerSelectClick,
     handleCrystallElementClick,
-    handleBottomButtons
+    handleBottomButtons,
+    handleButtonClick
 } from './script.js';
 
 function get_minibutton(crystal_type) {
@@ -118,7 +119,7 @@ export function get_element_containers() {
     for (let i = 0; i < elements_name.length; i++) {
         let element = get_minibutton(elements_name[i]);
         element.className ='mini_button grayscale_on';
-        element.id = elements_name[i] + '_button';
+        element.id = elements_name[i];
         element.addEventListener('click', function() {
             handleCrystallElementClick(elements_name[i]);
         })
@@ -136,7 +137,7 @@ export function get_newcards_players() {
     new_cards.className = 'mini_button';
     new_cards.append();
     new_cards.addEventListener('click', function() {
-        handleButtonClick('new_cards');
+        handleButtonClick('new_cards', 1);
     })
 
     const player1 = get_minibutton('first');

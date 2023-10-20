@@ -18,11 +18,6 @@ var gold = 25
 var silver = 23
 
 
-// let gold_crystall = NaN // document.getElementById('gold_crystall');
-// let silver_crystall = NaN // document.getElementById('silver_crystall');
-
-// change_counter();
-
 export function playerSelectClick(buttonId) {
     const buttons = document.querySelector('.player');
 
@@ -67,18 +62,18 @@ export function handleCrystallElementClick(button_type, value=0) {
             var gold_cost = value - silver;
             var add_val = silver;
             if(gold >= gold_cost) {
-                // silver = 0;
-                // gold -= gold_cost;
                 set_counter(gold_cost, add_val);
                 addCrystalBottom('silver-gold', gold_cost, add_val);
             }
         }
     }
     else {
-        if(gold >= 1) {
-            const bottom_buttons = document.querySelectorAll('.bottom-block .grid__el');
-            gold -= value;
-            addCrystalElementBottom(button_type)
+        const element = document.getElementById(button_type);
+        if(element){
+            if(element.classList.contains('grayscale_on')) {
+                // TODO: в первую очередь!!!
+                console.log(element);
+            }
         }
     }
 }
@@ -88,9 +83,45 @@ export function handleBottomButtons(button_type, value, add_val) {
     pass;
 }
 
+export function handleButtonClick(button_type, value=0) {
+    if(button_type === 'new_cards') {
+        if(gold > 0) {
+            set_counter(1);
+            addCrystalBottom(button_type, value);
+        }
+    }
+
+    const fp = document.getElementById('first_player').querySelector('img');
+    const sp = document.getElementById('second_player').querySelector('img');
+    if(button_type === 'first_player' && sp.classList.contains('invert')) {
+        if(gold > 0) {
+            set_counter(1);
+            fp.classList.add('invert');
+            sp.classList.remove('invert');
+        }
+    } 
+    if(button_type === 'second_player' && fp.classList.contains('invert')) {
+        set_counter(-1);
+        fp.classList.remove('invert');
+        sp.classList.add('invert');
+    }
+}
+
 function addCrystalBottom(button_type, value=0, add_val=0) {
     const bottom_buttons_container = document.querySelector('.bottom_crystal_container');
-    const bt = get_bottom_button(button_type, value, add_val);  
+    const bt = get_bottom_button(button_type, value, add_val);
+    
+    if(button_type === 'new_cards') {
+        const new_cards_button = document.getElementById('new_cards');
+        if (new_cards_button) {
+            const span_text = new_cards_button.querySelector('span')
+            const number = Number(span_text.textContent);
+            span_text.textContent = number + 1;
+            return;
+        }
+        bt.id = 'new_cards';
+    }
+
     bottom_buttons_container.append(bt);
 }
 

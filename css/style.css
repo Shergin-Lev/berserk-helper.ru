@@ -33,7 +33,9 @@ body {
 }
 
 .third {
-    display: flex;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .gold_crystal {
@@ -82,20 +84,26 @@ body {
     margin-bottom: 5px;
 }
 
-.crystal_container div {
+.bottom_crystal_container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
 
+.crystal_container div,
+.bottom_crystal_container div {
     min-width: 10%;
     min-height: 10%;
     max-width: 80%;
     background-size: contain;
 }
 
-.mini_button img {
+.mini_button img,
+.bottom_button img {
     max-height: 100px;
     width: 100%;
 }
 
-.mini_button, .counter {
+.mini_button, .counter, .bottom_button {
     position: relative;
     display: flex;
     justify-content: center;
@@ -166,6 +174,18 @@ body {
 @media (orientation: landscape) {
     .crystal_container {
         grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .bottom_crystal_container {
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
+
+@media (orientation: landscape) {
+    .bottom_crystal_container {
+        grid-template-columns: repeat(12, 1fr);
     }
 }
 
