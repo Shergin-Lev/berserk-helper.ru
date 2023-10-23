@@ -14,6 +14,7 @@ const second_container = document.querySelector('.second');
 const third_container = document.querySelector('.third');
 second_container.append(get_player_container());
 
+const crystall_quantity = 15;
 var gold = 25
 var silver = 23
 
@@ -45,15 +46,14 @@ export function playerSelectClick(buttonId) {
     }, 800);
 }
 
-export function handleCrystallElementClick(button_type, value=0) {    
-    if(button_type === 'gold') {
+export function handleCrystallElementClick(button_type, value=0) {
+    if(button_type === 'gold' && check_crystall_quantity() < crystall_quantity) {
         if(gold >= value) {
             set_counter(value)
-            console.log(value);
             addCrystalBottom(button_type, value);
         }
     }
-    else if(button_type === 'silver') {
+    else if(button_type === 'silver'  && check_crystall_quantity() < crystall_quantity) {
         if(silver >= value) {
             set_counter(0, value);
             addCrystalBottom(button_type, value);
@@ -70,17 +70,43 @@ export function handleCrystallElementClick(button_type, value=0) {
     else {
         const element = document.getElementById(button_type);
         if(element){
-            if(element.classList.contains('grayscale_on')) {
-                // TODO: в первую очередь!!!
-                console.log(element);
+            let cost = 0;
+            let quantity = check_element_button_on();
+            if(element.classList.contains('grayscale_on')) {            
+                if(quantity >= 1) cost = 1;
+                if(gold >= cost) element.classList.remove('grayscale_on');
             }
+            else {
+                if(quantity > 1) cost = -1;
+                element.classList.add('grayscale_on');
+            }
+            set_counter(cost);
         }
     }
 }
 
-export function handleBottomButtons(button_type, value, add_val) {
-    // TODO: DO IT!
-    pass;
+function check_crystall_quantity() {
+    const elements_on = document.querySelectorAll('.bottom_crystal_container .crystal');
+    return elements_on.length;
+}
+
+function check_element_button_on() {
+    const elements_on = document.querySelectorAll('.element_container .mini_button:not(.grayscale_on)');
+    return elements_on.length;
+}
+
+export function handleBottomButtons(button_type, value, add_val, bottom_button) {
+    if(button_type === 'silver') {
+        set_counter(0, -value);
+    } else if(button_type === 'gold') {
+        set_counter(-value);
+    } else if(button_type === 'silver-gold') {
+        set_counter(-value, -add_val);
+    } else {
+        return;
+    }
+
+    bottom_button.remove();
 }
 
 export function handleButtonClick(button_type, value=0) {
@@ -141,4 +167,3 @@ function change_counter() {
     gold_crystall.textContent = gold;
     silver_crystall.textContent = silver;
 }
-

@@ -83,7 +83,6 @@ export function get_crystal_containers() {
         g_cr.id = 'gold_' + crystal_number;
         g_cr.addEventListener('click', (function(crystal_number) {
             return function() {
-                console.log(crystal_number)
                 handleCrystallElementClick('gold', crystal_number);
             }
         })(crystal_number));
@@ -95,7 +94,6 @@ export function get_crystal_containers() {
         s_cr.id = 'silver_' + crystal_number;
         s_cr.addEventListener('click', (function(crystal_number) {
             return function() {
-                console.log(crystal_number)
                 handleCrystallElementClick('silver', crystal_number);
             }
         })(crystal_number));
@@ -188,15 +186,22 @@ export function get_bottom_crystal_container() {
 export function get_bottom_button(button_type, value=0, add_val=0) {
     const bottom_button = get_minibutton(button_type);
     bottom_button.className = 'bottom_button';
+    
+    let crystal_type = ['gold', 'silver', 'silver-gold'];
+    if(crystal_type.includes(button_type)) {
+        bottom_button.classList.add('crystal');
+    }
+
     bottom_button.addEventListener('click',  function() {
-        handleBottomButtons(button_type, value, add_val);
+        handleBottomButtons(button_type, value, add_val, bottom_button);
     })
 
     if(value != 0) {
+        let text = value;
         if(add_val != 0) {
-            value = value.toString() + '|' + add_val;
+            text = value.toString() + '|' + add_val;
         }
-        bottom_button.append(get_crystal_span(value))
+        bottom_button.append(get_crystal_span(text))
     }
 
     return bottom_button;
