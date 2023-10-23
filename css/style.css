@@ -171,7 +171,7 @@ span, .mini_button, .bottom_button {
         scale: 0.8;
     }
 }
-
+ 
 @media (min-width: 900px) {
     .player {
         max-width: 30%;

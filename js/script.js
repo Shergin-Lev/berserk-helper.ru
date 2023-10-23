@@ -102,10 +102,20 @@ export function handleBottomButtons(button_type, value, add_val, bottom_button) 
         set_counter(-value);
     } else if(button_type === 'silver-gold') {
         set_counter(-value, -add_val);
-    } else {
-        return;
+    } else if(button_type === 'new_cards') {
+        const new_cards_button = document.getElementById('new_cards');
+        if (new_cards_button) {
+            const span_text = new_cards_button.querySelector('span')
+            const number = Number(span_text.textContent);
+            set_counter(-1);
+            if (number == 1) {
+                new_cards_button.remove();
+                return;    
+            }
+            span_text.textContent -= 1;     
+        }
+        bt.id = 'new_cards';
     }
-
     bottom_button.remove();
 }
 
