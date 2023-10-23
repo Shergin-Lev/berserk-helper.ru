@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "Lalezar-Regular";
+    src: url("../font/Lalezar-Regular.ttf");
+}
+
 body {
     margin: 0px;
     padding: 0px;    
@@ -78,8 +83,6 @@ body {
     background-size: contain;
 }
 
-
-
 .crystal_container,
 .element_container,
 .newcards_players_container {
@@ -100,6 +103,7 @@ body {
 .bottom_crystal_container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
 }
 
 .mini_button img,
@@ -131,7 +135,7 @@ body {
 
 .crystal_value {
     position: absolute;
-    font-family: 'Lalezar';
+    font-family: 'Lalezar-Regular';
     font-size: 2em;
     color: rgb(0, 0, 0);
     text-shadow: 1px 1px 2px rgb(85, 85, 85);
@@ -188,13 +192,13 @@ span, .mini_button, .bottom_button {
 
 @media (min-width: 900px) {
     .bottom_crystal_container {
-        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: repeat(10, 1fr);
     }
 }
 
 @media (orientation: landscape) {
     .bottom_crystal_container {
-        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: repeat(10, 1fr);
     }
 }
 
