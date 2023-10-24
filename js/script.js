@@ -39,7 +39,7 @@ export function playerSelectClick(buttonId) {
         const player_button = document.getElementById(buttonId).querySelector('img');
         player_button.classList.add('invert');
         if(buttonId === 'first_player') {
-            set_counter(1, 0);
+            set_counter(1, 1);
         }
 
         third_container.append(get_bottom_crystal_container())
@@ -130,14 +130,14 @@ export function handleButtonClick(button_type, value=0) {
     const fp = document.getElementById('first_player').querySelector('img');
     const sp = document.getElementById('second_player').querySelector('img');
     if(button_type === 'first_player' && sp.classList.contains('invert')) {
-        if(gold > 0) {
-            set_counter(1);
+        if(gold > 0 && silver > 0) {
+            set_counter(1, 1);
             fp.classList.add('invert');
             sp.classList.remove('invert');
         }
     } 
     if(button_type === 'second_player' && fp.classList.contains('invert')) {
-        set_counter(-1);
+        set_counter(-1, -1);
         fp.classList.remove('invert');
         sp.classList.add('invert');
     }
