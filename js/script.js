@@ -110,9 +110,10 @@ export function handleBottomButtons(button_type, value, add_val, bottom_button) 
             set_counter(-1);
             if (number == 1) {
                 new_cards_button.remove();
-                return;    
+                return;
             }
-            span_text.textContent -= 1;     
+            span_text.textContent -= 1;
+            return;
         }
     }
     bottom_button.remove();
