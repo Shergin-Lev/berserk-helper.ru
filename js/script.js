@@ -114,7 +114,6 @@ export function handleBottomButtons(button_type, value, add_val, bottom_button) 
             }
             span_text.textContent -= 1;     
         }
-        bt.id = 'new_cards';
     }
     bottom_button.remove();
 }
