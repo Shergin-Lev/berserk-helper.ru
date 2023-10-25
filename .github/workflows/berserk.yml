@@ -13,15 +13,9 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v2
 
-            - name: Install SCP
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y scp
-              shell: bash
-
             - name: Deploy via SCP
               run: |
-                  scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
+                  scp -o StrictHostKeyChecking=no -r ./berserk-helper/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
               env:
                   SSH_PASSWORD: ${{ secrets.SSH_PRIVATE_KEY }}
               shell: bash
