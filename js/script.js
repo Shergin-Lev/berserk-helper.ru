@@ -72,11 +72,11 @@ export function handleCrystallElementClick(button_type, value=0) {
         if(element){
             let cost = 0;
             let quantity = check_element_button_on();
-            if(element.classList.contains('grayscale_on')) {            
+            if(element.classList.contains('grayscale_on') && gold > 0) {            
                 if(quantity >= 1) cost = 1;
                 if(gold >= cost) element.classList.remove('grayscale_on');
             }
-            else {
+            else if (!element.classList.contains('grayscale_on')) {
                 if(quantity > 1) cost = -1;
                 element.classList.add('grayscale_on');
             }
