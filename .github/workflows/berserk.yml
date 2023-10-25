@@ -1,4 +1,4 @@
-name: Deploy to hosting
+name: Deploy to Hosting
 
 on:
     push:
@@ -8,14 +8,21 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+
         steps:
-            - name: Checkout code
+            - name: Checkout repository
               uses: actions/checkout@v2
-            - name: Deploy over SSH
-              uses: easingthemes/ssh-deploy@v2.1.5
-              with:
-                  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  remote_host: ${{ secrets.REMOTE_HOST }}
-                  remote_user: ${{ secrets.REMOTE_USER }}
-                  source: ./
-                  target: /home/l/levvsmailr/berserk/public_html
+
+            - name: Install SCP
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y scp
+              shell: bash
+
+            - name: Deploy via SCP
+              run: |
+                  ls -la
+                  # scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
+              env:
+                  SSH_PASSWORD: ${{ secrets.SSH_PRIVATE_KEY }}
+              shell: bash
