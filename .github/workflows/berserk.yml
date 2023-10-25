@@ -21,8 +21,7 @@ jobs:
 
             - name: Deploy via SCP
               run: |
-                  ls -la
-                  # scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
+                  scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
               env:
                   SSH_PASSWORD: ${{ secrets.SSH_PRIVATE_KEY }}
               shell: bash
