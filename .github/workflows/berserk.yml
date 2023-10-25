@@ -17,5 +17,5 @@ jobs:
               run: |
                   scp -o StrictHostKeyChecking=no -r ./berserk-helper/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
               env:
-                  SSH_PASSWORD: ${{ secrets.SSH_PRIVATE_KEY }}
+                  SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
               shell: bash
