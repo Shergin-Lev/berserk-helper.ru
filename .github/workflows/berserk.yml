@@ -1,21 +1,21 @@
 name: Deploy to hosting
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Deploy over SSH
-        uses: easingthemes/ssh-deploy@v2.1.5
-        with:
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          remote_host: ${{ secrets.REMOTE_HOST }}
-          remote_user: ${{ secrets.REMOTE_USER }}
-          source: ./
-          target: /path/to/your/site
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Deploy over SSH
+              uses: easingthemes/ssh-deploy@v2.1.5
+              with:
+                  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  remote_host: ${{ secrets.REMOTE_HOST }}
+                  remote_user: ${{ secrets.REMOTE_USER }}
+                  source: ./
+                  target: /home/l/levvsmailr/berserk/public_html
