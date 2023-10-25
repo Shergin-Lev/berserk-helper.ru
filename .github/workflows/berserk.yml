@@ -11,18 +11,14 @@ jobs:
 
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: copy file via ssh password
-              uses: appleboy/ssh-action@v1.0.0
+              uses: appleboy/scp-action@v0.1.4
               with:
                   host: ${{ secrets.REMOTE_HOST }}
                   username: ${{ secrets.REMOTE_USER }}
                   password: ${{ secrets.SSH_PASSWORD }}
                   port: ${{ secrets.REMOTE_PORT }}
-                  script: |
-                      whoami
-                      ls
-                      git --version
-                  # source: "./berserk-helper/*"
-                  # target: ${{ secrets.REMOTE_PATH }}
+                  source: "berserk-helper/*"
+                  target: "${{ secrets.REMOTE_PATH }}"
