@@ -13,12 +13,11 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
 
-            - name: copy file via ssh password
-              uses: appleboy/scp-action@v0.1.4
-              with:
-                  host: ${{ secrets.REMOTE_HOST }}
-                  username: ${{ secrets.REMOTE_USER }}
-                  password: ${{ secrets.SSH_PASSWORD }}
-                  port: ${{ secrets.REMOTE_PORT }}
-                  source: "berserk-helper/*"
-                  target: "${{ secrets.REMOTE_PATH }}"
+            - name: Deploy over SSH
+              uses: easingthemes/ssh-deploy@v2.1.5
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+                  REMOTE_USER: ${{ secrets.REMOTE_USER }}
+                  SOURCE: "berserk-helper/"
+                  TARGET: ${{ secrets.REMOTE_PATH }}
