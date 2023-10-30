@@ -7,7 +7,7 @@ on:
 
 jobs:
     build:
-        name: Build
+        name: Deploy
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
@@ -20,6 +20,6 @@ jobs:
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.SSH_KEY }}
                   passphrase: ${{ secrets.SSH_PASSPHRASE }}
-                  source: "berserk-helper/test.txt"
+                  source: "berserk-helper/*"
                   target: ${{ secrets.REMOTE_PATH }}
                   strip_components: 1
