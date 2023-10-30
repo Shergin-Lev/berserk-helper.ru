@@ -19,5 +19,5 @@ jobs:
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.SSH_KEY }}
                   passphrase: ${{ secrets.SSH_PASSPHRASE }}
-                  source: "./berserk-helper/test.txt"
+                  source: "berserk-helper/test.txt"
                   target: ${{ secrets.REMOTE_PATH }}
