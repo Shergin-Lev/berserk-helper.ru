@@ -13,10 +13,6 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
 
-            - name: Change dir
-              run: |
-                  cd berserk-helper
-
             - name: Deploy over SCP
               uses: appleboy/scp-action@v0.1.4
               with:
@@ -24,5 +20,5 @@ jobs:
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.SSH_KEY }}
                   passphrase: ${{ secrets.SSH_PASSPHRASE }}
-                  source: "test.txt"
+                  source: "berserk-helper/test/*"
                   target: ${{ secrets.REMOTE_PATH }}
