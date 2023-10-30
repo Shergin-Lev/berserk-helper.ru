@@ -22,3 +22,4 @@ jobs:
                   passphrase: ${{ secrets.SSH_PASSPHRASE }}
                   source: "berserk-helper/test/*"
                   target: ${{ secrets.REMOTE_PATH }}
+                  strip_components: 2
