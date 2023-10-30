@@ -12,12 +12,14 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
-            - name: Deploy over SSH
-              uses: appleboy/scp-action@v0.1.4
-              with:
-                  host: ${{ secrets.REMOTE_HOST }}
-                  username: ${{ secrets.REMOTE_USER }}
-                  key: ${{ secrets.SSH_KEY }}
-                  passphrase: ${{ secrets.SSH_PASSPHRASE }}
-                  source: "berserk-helper/test.txt"
-                  target: ${{ secrets.REMOTE_PATH }}
+            - name: LS test
+              run: ls -la
+            # - name: Deploy over SSH
+            #   uses: appleboy/scp-action@v0.1.4
+            #   with:
+            #       host: ${{ secrets.REMOTE_HOST }}
+            #       username: ${{ secrets.REMOTE_USER }}
+            #       key: ${{ secrets.SSH_KEY }}
+            #       passphrase: ${{ secrets.SSH_PASSPHRASE }}
+            #       source: "berserk-helper/test.txt"
+            #       target: ${{ secrets.REMOTE_PATH }}
