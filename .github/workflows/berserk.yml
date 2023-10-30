@@ -15,6 +15,5 @@ jobs:
 
             - name: Deploy over SSH
               run: |
-                  echo "./berserk-helper/*" ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}   
-                  # scp "./berserk-helper/*" ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}
-                  # ${{ secrets.SSH_PASSWORD }}
+                  sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
+                  ls -la
