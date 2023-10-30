@@ -10,8 +10,13 @@ jobs:
         name: Build
         runs-on: ubuntu-latest
         steps:
-            # - name: Checkout repository
-            - uses: actions/checkout@v3
+            - name: local test
+              run: |
+                  echo ${{ vars.TEST_VAR }} >> tst.txt
+                  cat tst.txt
+
+            - name: Checkout repository
+              uses: actions/checkout@v3
             - name: Deploy over SSH
               uses: appleboy/scp-action@v0.1.4
               with:
