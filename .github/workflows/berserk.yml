@@ -15,5 +15,5 @@ jobs:
 
             - name: Deploy over SSH
               run: |
-                  sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
+                  sshpass -p -T ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
                   ls -la
