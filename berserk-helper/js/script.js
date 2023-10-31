@@ -76,7 +76,7 @@ export function handleCrystallElementClick(button_type, value=0) {
                 if(quantity >= 1) cost = 1;
                 if(gold >= cost) element.classList.remove('grayscale_on');
             }
-            else if (!element.classList.contains('grayscale_on')) {
+            else if (!element.classList.contains('grayscale_on') && !element.classList.contains('grayscale_on_and_blur')) {
                 if(quantity > 1) cost = -1;
                 element.classList.add('grayscale_on');
             }
@@ -171,9 +171,53 @@ function set_counter(_gold=0, _silver=0) {
     gold -= _gold;
     silver -= _silver;
     change_counter();
+    check_crystal_activ();
 }
 
 function change_counter() {
     gold_crystall.textContent = gold;
     silver_crystall.textContent = silver;
+}
+
+function check_crystal_activ() {
+    const all_crystall = document.querySelectorAll('.mini_button');
+    const elements_name = ['forests', 'mountains', 'plains', 'swamps', 'darkness'];
+
+    // .grayscale_on_and_blur
+    for (let i = 0; i < all_crystall.length; i++) {
+        const id = all_crystall[i].id;
+        let num = parseInt(id.split('_')[1]);
+        const crystal_type = id.split('_')[0];
+
+        if (gold < num) {
+            if (crystal_type === 'silver' && gold + silver >= num) {
+                activate_crystal(all_crystall[i]);
+            } else {
+                deactivate_crystal(all_crystall[i]);
+            }
+        } else {
+            activate_crystal(all_crystall[i]);
+        }
+
+        if (elements_name.includes(crystal_type)) {
+            if (gold === 0 && all_crystall[i].classList.contains('grayscale_on')) {
+                all_crystall[i].classList.remove('grayscale_on');
+                all_crystall[i].classList.add('grayscale_on_and_blur');
+            } else if (gold > 0 && all_crystall[i].classList.contains('grayscale_on_and_blur')) {
+                all_crystall[i].classList.remove('grayscale_on_and_blur');
+                all_crystall[i].classList.add('grayscale_on');
+            }
+        }
+    }
+}
+
+function activate_crystal(ctystal_button) {
+    if (ctystal_button.classList.contains('diactivated_button')) {
+        ctystal_button.classList.remove('diactivated_button');
+    }
+}
+
+function deactivate_crystal(ctystal_button) {
+    if (ctystal_button.classList.contains('diactivated_button')) return;
+    ctystal_button.classList.add('diactivated_button');
 }
