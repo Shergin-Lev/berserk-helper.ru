@@ -208,6 +208,14 @@ function check_crystal_activ() {
                 all_crystall[i].classList.add('grayscale_on');
             }
         }
+
+        if (all_crystall[i].id === 'new_card') {
+            if (gold === 0 && !all_crystall[i].classList.contains('diactivated_button')) {
+                deactivate_crystal(all_crystall[i]);
+            } else {
+                activate_crystal(all_crystall[i]);
+            }
+        }
     }
 }
 
