@@ -133,7 +133,7 @@ export function get_newcards_players() {
 
     const new_cards = get_minibutton('new_cards');    
     new_cards.className = 'mini_button';
-    new_cards.append();
+    new_cards.id = 'new_card';
     new_cards.addEventListener('click', function() {
         handleButtonClick('new_cards', 1);
     })
