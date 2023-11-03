@@ -129,6 +129,7 @@ export function handleBottomButtons(button_type, value, add_val, bottom_button) 
 }
 
 export function handleButtonClick(button_type, value=0) {
+    
     if(button_type === 'new_cards') {
         if(gold > 0) {
             set_counter(1);
@@ -138,17 +139,20 @@ export function handleButtonClick(button_type, value=0) {
 
     const fp = document.getElementById('first_player').querySelector('img');
     const sp = document.getElementById('second_player').querySelector('img');
+    
     if(button_type === 'first_player' && sp.classList.contains('invert')) {
         if(gold > 0 && silver > 0) {
-            set_counter(1, 1);
+   
             fp.classList.add('invert');
             sp.classList.remove('invert');
+            set_counter(1, 1);
         }
     } 
-    if(button_type === 'second_player' && fp.classList.contains('invert')) {
-        set_counter(-1, -1);
+    
+    if(button_type === 'second_player' && fp.classList.contains('invert')) {     
         fp.classList.remove('invert');
         sp.classList.add('invert');
+        set_counter(-1, -1);
     }
 }
 
@@ -222,6 +226,15 @@ function check_crystal_activ() {
             if (gold === 0 && !all_crystall[i].classList.contains('diactivated_button')) {
                 deactivate_crystal(all_crystall[i]);
             } else {
+                activate_crystal(all_crystall[i]);
+            }
+        }
+
+        if (all_crystall[i].id === 'first_player') {
+            const sp_img = document.getElementById('second_player').querySelector('img');
+            if ((gold === 0 || silver === 0) && sp_img.classList.contains('invert')) {
+                deactivate_crystal(all_crystall[i]);
+            } else if (sp_img.classList.contains('invert')) {
                 activate_crystal(all_crystall[i]);
             }
         }
