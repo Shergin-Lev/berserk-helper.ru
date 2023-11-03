@@ -1,5 +1,6 @@
 import {
     get_crystal_containers,
+    get_logo_container,
     get_player_container,
     get_element_containers,
     get_newcards_players,
@@ -12,6 +13,8 @@ import {
 const first_container = document.querySelector('.first');
 const second_container = document.querySelector('.second');
 const third_container = document.querySelector('.third');
+
+first_container.append(get_logo_container());
 second_container.append(get_player_container());
 
 const crystall_quantity = 15;
@@ -21,14 +24,20 @@ var silver = 23
 
 export function playerSelectClick(buttonId) {
     const buttons = document.querySelector('.player');
+    const logo = document.querySelector('.logo');
 
     buttons.style.opacity = 1;
     buttons.style.scale = '100%';
-    buttons.style.animationName = "opacity_on_scale";
+    buttons.style.animationName = 'opacity_on_scale';
+
+    logo.style.opacity = 1;
+    logo.style.scale = '100%';
+    logo.style.animationName = 'opacity_on_scale';
 
     // INIT
     setTimeout(() => {
         buttons.remove();
+        logo.remove();
         first_container.append(get_crystal_containers()[0]);
         first_container.append(get_crystal_containers()[1]);
         first_container.append(get_element_containers());

@@ -29,6 +29,19 @@ function get_crystal_span(value, id='') {
 }
 
 
+export function get_logo_container() {
+    const logo_container = document.createElement('div');
+    logo_container.className = 'logo';
+
+    const logo_image = document.createElement('img');
+    logo_image.src = 'image/logo.png';
+    logo_image.alt = 'Berserk Logo';
+
+    logo_container.append(logo_image);
+    
+    return logo_container;
+}
+
 
 export function get_player_container() {
     const player_container = document.createElement('div');
