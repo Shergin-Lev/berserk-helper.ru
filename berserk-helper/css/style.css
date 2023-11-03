@@ -50,6 +50,20 @@ body {
     width: 100%;
 }
 
+.logo {
+    animation: opacity_off_scale 0.7s ease-in-out forwards;
+    scale: 80%;
+    opacity: 0;
+    transition: max-width 0.3s;
+    min-width: 30%; 
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
 .player, .counters_container {
     animation: opacity_off_scale 0.7s ease-in-out forwards;
     scale: 80%;
